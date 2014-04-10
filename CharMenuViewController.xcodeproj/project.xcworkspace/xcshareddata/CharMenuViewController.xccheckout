@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>EEFD4489-39A1-4EC1-AA4B-C6D1089B63B9</string>
+	<key>IDESourceControlProjectName</key>
+	<string>CharMenuViewController</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>2F3FD26D-EE65-4B00-BB30-125F5F0DB136</key>
+		<string>https://github.com/Charimon/CharMenuViewController</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>CharMenuViewController/CharMenuViewController.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>2F3FD26D-EE65-4B00-BB30-125F5F0DB136</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/Charimon/CharMenuViewController</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>2F3FD26D-EE65-4B00-BB30-125F5F0DB136</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>2F3FD26D-EE65-4B00-BB30-125F5F0DB136</string>
+			<key>IDESourceControlWCCName</key>
+			<string>CharMenuViewController</string>
+		</dict>
+	</array>
+</dict>
+</plist>

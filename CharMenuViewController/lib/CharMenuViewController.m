@@ -15,6 +15,7 @@
 @property (nonatomic, readwrite) CharMenuState state;
 @property (strong, nonatomic) UIPanGestureRecognizer *panGestureRecognizer;
 @property (strong, nonatomic) UITapGestureRecognizer *peekTapRecognizer;
+
 @end
 
 @implementation CharMenuViewController
@@ -64,7 +65,7 @@ CGFloat const CHAR_MENU_SNAP_RATIO = .3333333f;
                                                                 toItem:self.view
                                                              attribute:NSLayoutAttributeWidth
                                                             multiplier:1.f
-                                                              constant:0.f],
+                                                              constant:-self.contentPeekSize],
                                 [NSLayoutConstraint constraintWithItem:_menuViewController.view
                                                              attribute:NSLayoutAttributeHeight
                                                              relatedBy:NSLayoutRelationEqual
@@ -116,6 +117,38 @@ CGFloat const CHAR_MENU_SNAP_RATIO = .3333333f;
                                                                     multiplier:1.f
                                                                       constant:0.f];
     [self.view addConstraint:self.contentViewLeadingConstraint];
+    
+    
+    [self.view addConstraints:@[[NSLayoutConstraint constraintWithItem:self.shadowView
+                                                             attribute:NSLayoutAttributeTop
+                                                             relatedBy:NSLayoutRelationEqual
+                                                                toItem:_contentViewController.view
+                                                             attribute:NSLayoutAttributeTop
+                                                            multiplier:1.f
+                                                              constant:0.f],
+                                [NSLayoutConstraint constraintWithItem:self.shadowView
+                                                             attribute:NSLayoutAttributeTrailing
+                                                             relatedBy:NSLayoutRelationEqual
+                                                                toItem:_contentViewController.view
+                                                             attribute:NSLayoutAttributeLeading
+                                                            multiplier:1.f
+                                                              constant:0.f],
+                                [NSLayoutConstraint constraintWithItem:self.shadowView
+                                                             attribute:NSLayoutAttributeWidth
+                                                             relatedBy:NSLayoutRelationEqual
+                                                                toItem:nil
+                                                             attribute:NSLayoutAttributeNotAnAttribute
+                                                            multiplier:0.f
+                                                              constant:8.f],
+                                [NSLayoutConstraint constraintWithItem:self.shadowView
+                                                             attribute:NSLayoutAttributeHeight
+                                                             relatedBy:NSLayoutRelationEqual
+                                                                toItem:_contentViewController.view
+                                                             attribute:NSLayoutAttributeHeight
+                                                            multiplier:1.f
+                                                              constant:0.f],
+                                ]];
+    [self.view bringSubviewToFront:self.shadowView];
 }
 -(void) loadView {
     [super loadView];
@@ -123,11 +156,36 @@ CGFloat const CHAR_MENU_SNAP_RATIO = .3333333f;
     [self.view addGestureRecognizer:self.peekTapRecognizer];
 }
 -(void) viewWillLayoutSubviews {
+    [super viewWillLayoutSubviews];
     if(self.animating || self.panning) return;
+    
     if(self.state == CharMenuStateOpened) {
         self.contentViewLeadingConstraint.constant = self.view.bounds.size.width - self.contentPeekSize;
     }
 }
+
+-(void) viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    self.shadow.frame = CGRectMake(0, 0, self.shadowView.bounds.size.width, self.shadowView.bounds.size.height);
+}
+
+-(UIView *) shadowView {
+    if(_shadowView) return _shadowView;
+    _shadowView = [[UIView alloc] init];
+    
+    
+    self.shadow = [CAGradientLayer layer];
+    self.shadow.startPoint = CGPointMake(0, 0.5);
+    self.shadow.endPoint = CGPointMake(1.0, 0.5);
+    self.shadow.colors = @[ (id)[UIColor colorWithWhite:49.f/255.f alpha:0].CGColor, (id)[UIColor colorWithWhite:49.f/255.f alpha:.22f].CGColor, (id)[UIColor colorWithWhite:49.f/255.f alpha:.6f].CGColor ];
+    self.shadow.locations = @[ [NSNumber numberWithFloat:0], [NSNumber numberWithFloat:.8f], [NSNumber numberWithFloat:1.f] ];
+    [_shadowView.layer addSublayer:self.shadow];
+    
+    [self.view addSubview:_shadowView];
+    _shadowView.translatesAutoresizingMaskIntoConstraints = NO;
+    return _shadowView;
+}
+
 -(UIPanGestureRecognizer *) panGestureRecognizer {
     if(_panGestureRecognizer) return _panGestureRecognizer;
     _panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panning:)];

@@ -23,5 +23,7 @@ typedef NS_ENUM(NSUInteger, CharMenuState) {
 -(void) setContentPeekSize:(CGFloat)contentPeekSize animated:(BOOL) animated;
 
 //protected
+@property (strong, nonatomic) CAGradientLayer *shadow;
+@property (strong, nonatomic) UIView *shadowView;
 
 @end

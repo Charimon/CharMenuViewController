@@ -18,7 +18,7 @@
 @end
 
 @implementation CharMenuViewController
-CGFloat const SNAP_RATIO = .3333333f;
+CGFloat const CHAR_MENU_SNAP_RATIO = .3333333f;
 
 -(instancetype) init {
     self = [super init];
@@ -157,7 +157,7 @@ CGFloat const SNAP_RATIO = .3333333f;
         if(self.state == CharMenuStateOpened) {
             if(xVelocity < -1000) [self closeMenu];
             else if(xVelocity > 1000) [self openMenu];
-            else if( distanceFromRight < maxDistance*SNAP_RATIO) [self openMenu];
+            else if( distanceFromRight < maxDistance*CHAR_MENU_SNAP_RATIO) [self openMenu];
             else [self closeMenu];
         }
     }

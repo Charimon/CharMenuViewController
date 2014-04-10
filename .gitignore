@@ -21,3 +21,5 @@ xcuserdata
 profile
 *.moved-aside
 DerivedData
+*.xcuserdatad
+xcuserdatad

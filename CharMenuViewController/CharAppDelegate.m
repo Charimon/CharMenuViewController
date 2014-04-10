@@ -7,6 +7,7 @@
 //
 
 #import "CharAppDelegate.h"
+#import "CharViewController.h"
 
 @implementation CharAppDelegate
 
@@ -16,6 +17,7 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    self.window.rootViewController = [CharViewController new];
     return YES;
 }
 

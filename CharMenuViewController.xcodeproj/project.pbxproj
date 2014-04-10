@@ -19,6 +19,10 @@
 		33BAF48418F6722D004EC40F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33BAF46C18F6722D004EC40F /* UIKit.framework */; };
 		33BAF48C18F6722D004EC40F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 33BAF48A18F6722D004EC40F /* InfoPlist.strings */; };
 		33BAF48E18F6722D004EC40F /* CharMenuViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 33BAF48D18F6722D004EC40F /* CharMenuViewControllerTests.m */; };
+		33BAF49E18F6735A004EC40F /* CharViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33BAF49D18F6735A004EC40F /* CharViewController.m */; };
+		33BAF4A118F6736D004EC40F /* CharMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33BAF4A018F6736D004EC40F /* CharMenuViewController.m */; };
+		33BAF4A418F67441004EC40F /* CharCustomMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33BAF4A318F67441004EC40F /* CharCustomMenuViewController.m */; };
+		33BAF4A718F67451004EC40F /* CharCustomContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33BAF4A618F67451004EC40F /* CharCustomContentViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +52,14 @@
 		33BAF48918F6722D004EC40F /* CharMenuViewControllerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CharMenuViewControllerTests-Info.plist"; sourceTree = "<group>"; };
 		33BAF48B18F6722D004EC40F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		33BAF48D18F6722D004EC40F /* CharMenuViewControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CharMenuViewControllerTests.m; sourceTree = "<group>"; };
+		33BAF49C18F6735A004EC40F /* CharViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CharViewController.h; path = test/CharViewController.h; sourceTree = "<group>"; };
+		33BAF49D18F6735A004EC40F /* CharViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CharViewController.m; path = test/CharViewController.m; sourceTree = "<group>"; };
+		33BAF49F18F6736D004EC40F /* CharMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CharMenuViewController.h; path = lib/CharMenuViewController.h; sourceTree = "<group>"; };
+		33BAF4A018F6736D004EC40F /* CharMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CharMenuViewController.m; path = lib/CharMenuViewController.m; sourceTree = "<group>"; };
+		33BAF4A218F67441004EC40F /* CharCustomMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CharCustomMenuViewController.h; path = test/CharCustomMenuViewController.h; sourceTree = "<group>"; };
+		33BAF4A318F67441004EC40F /* CharCustomMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CharCustomMenuViewController.m; path = test/CharCustomMenuViewController.m; sourceTree = "<group>"; };
+		33BAF4A518F67451004EC40F /* CharCustomContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CharCustomContentViewController.h; path = test/CharCustomContentViewController.h; sourceTree = "<group>"; };
+		33BAF4A618F67451004EC40F /* CharCustomContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CharCustomContentViewController.m; path = test/CharCustomContentViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,8 +119,8 @@
 		33BAF46E18F6722D004EC40F /* CharMenuViewController */ = {
 			isa = PBXGroup;
 			children = (
-				33BAF47718F6722D004EC40F /* CharAppDelegate.h */,
-				33BAF47818F6722D004EC40F /* CharAppDelegate.m */,
+				33BAF49818F672B6004EC40F /* test */,
+				33BAF49718F672A4004EC40F /* lib */,
 				33BAF47A18F6722D004EC40F /* Images.xcassets */,
 				33BAF46F18F6722D004EC40F /* Supporting Files */,
 			);
@@ -118,6 +130,8 @@
 		33BAF46F18F6722D004EC40F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				33BAF47718F6722D004EC40F /* CharAppDelegate.h */,
+				33BAF47818F6722D004EC40F /* CharAppDelegate.m */,
 				33BAF47018F6722D004EC40F /* CharMenuViewController-Info.plist */,
 				33BAF47118F6722D004EC40F /* InfoPlist.strings */,
 				33BAF47418F6722D004EC40F /* main.m */,
@@ -142,6 +156,28 @@
 				33BAF48A18F6722D004EC40F /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		33BAF49718F672A4004EC40F /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				33BAF49F18F6736D004EC40F /* CharMenuViewController.h */,
+				33BAF4A018F6736D004EC40F /* CharMenuViewController.m */,
+			);
+			name = lib;
+			sourceTree = "<group>";
+		};
+		33BAF49818F672B6004EC40F /* test */ = {
+			isa = PBXGroup;
+			children = (
+				33BAF49C18F6735A004EC40F /* CharViewController.h */,
+				33BAF49D18F6735A004EC40F /* CharViewController.m */,
+				33BAF4A218F67441004EC40F /* CharCustomMenuViewController.h */,
+				33BAF4A318F67441004EC40F /* CharCustomMenuViewController.m */,
+				33BAF4A518F67451004EC40F /* CharCustomContentViewController.h */,
+				33BAF4A618F67451004EC40F /* CharCustomContentViewController.m */,
+			);
+			name = test;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -240,8 +276,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33BAF4A418F67441004EC40F /* CharCustomMenuViewController.m in Sources */,
 				33BAF47918F6722D004EC40F /* CharAppDelegate.m in Sources */,
+				33BAF4A118F6736D004EC40F /* CharMenuViewController.m in Sources */,
+				33BAF49E18F6735A004EC40F /* CharViewController.m in Sources */,
 				33BAF47518F6722D004EC40F /* main.m in Sources */,
+				33BAF4A718F67451004EC40F /* CharCustomContentViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -440,6 +480,7 @@
 				33BAF49318F6722D004EC40F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		33BAF49418F6722D004EC40F /* Build configuration list for PBXNativeTarget "CharMenuViewControllerTests" */ = {
 			isa = XCConfigurationList;
@@ -448,6 +489,7 @@
 				33BAF49618F6722D004EC40F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

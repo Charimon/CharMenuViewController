@@ -36,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3349CEA518FD7C87000D2564 /* CharMenuViewControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CharMenuViewControllerDelegate.h; path = lib/CharMenuViewControllerDelegate.h; sourceTree = "<group>"; };
 		33BAF46518F6722D004EC40F /* CharMenuViewController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CharMenuViewController.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		33BAF46818F6722D004EC40F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		33BAF46A18F6722D004EC40F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -163,6 +164,7 @@
 			children = (
 				33BAF49F18F6736D004EC40F /* CharMenuViewController.h */,
 				33BAF4A018F6736D004EC40F /* CharMenuViewController.m */,
+				3349CEA518FD7C87000D2564 /* CharMenuViewControllerDelegate.h */,
 			);
 			name = lib;
 			sourceTree = "<group>";

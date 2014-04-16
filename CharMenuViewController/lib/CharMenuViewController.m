@@ -7,11 +7,13 @@
 //
 
 #import "CharMenuViewController.h"
+#import "CharMenuViewControllerDelegate.h"
 
 @interface CharMenuViewController () <UIGestureRecognizerDelegate>
 @property (atomic) BOOL animating;
 @property (nonatomic) BOOL panning;
 @property (strong, nonatomic) NSLayoutConstraint *contentViewLeadingConstraint;
+@property (strong, nonatomic) NSLayoutConstraint *menuViewWidthConstraint;
 @property (nonatomic, readwrite) CharMenuState state;
 @property (strong, nonatomic) UIPanGestureRecognizer *panGestureRecognizer;
 @property (strong, nonatomic) UITapGestureRecognizer *peekTapRecognizer;
@@ -31,8 +33,14 @@ CGFloat const CHAR_MENU_SNAP_RATIO = .3333333f;
 }
 
 -(void) setContentPeekSize:(CGFloat)contentPeekSize animated:(BOOL) animated{
-    if(animated && _contentPeekSize != contentPeekSize && self.state == CharMenuStateOpened) [self openMenu];
-    _contentPeekSize = contentPeekSize;
+    if(animated && _contentPeekSize != contentPeekSize && self.state == CharMenuStateOpened){
+        _contentPeekSize = contentPeekSize;
+        [self openMenu];
+    } else {
+        _contentPeekSize = contentPeekSize;
+    }
+    
+    
 }
 
 -(void) setMenuViewController:(UIViewController *)menuViewController {
@@ -60,13 +68,6 @@ CGFloat const CHAR_MENU_SNAP_RATIO = .3333333f;
                                                             multiplier:1.f
                                                               constant:0.f],
                                 [NSLayoutConstraint constraintWithItem:_menuViewController.view
-                                                             attribute:NSLayoutAttributeWidth
-                                                             relatedBy:NSLayoutRelationEqual
-                                                                toItem:self.view
-                                                             attribute:NSLayoutAttributeWidth
-                                                            multiplier:1.f
-                                                              constant:-self.contentPeekSize],
-                                [NSLayoutConstraint constraintWithItem:_menuViewController.view
                                                              attribute:NSLayoutAttributeHeight
                                                              relatedBy:NSLayoutRelationEqual
                                                                 toItem:self.view
@@ -74,6 +75,15 @@ CGFloat const CHAR_MENU_SNAP_RATIO = .3333333f;
                                                             multiplier:1.f
                                                               constant:0.f],
                                 ]];
+    
+    self.menuViewWidthConstraint = [NSLayoutConstraint constraintWithItem:_menuViewController.view
+                                                                attribute:NSLayoutAttributeWidth
+                                                                relatedBy:NSLayoutRelationEqual
+                                                                   toItem:self.view
+                                                                attribute:NSLayoutAttributeWidth
+                                                               multiplier:1.f
+                                                                 constant:-self.contentPeekSize];
+    [self.view addConstraint:self.menuViewWidthConstraint];
 }
 
 -(void) setContentViewController:(UIViewController *)contentViewController {
@@ -250,10 +260,22 @@ CGFloat const CHAR_MENU_SNAP_RATIO = .3333333f;
                         options:UIViewAnimationOptionBeginFromCurrentState
                      animations:^{
                          self.contentViewLeadingConstraint.constant = self.view.bounds.size.width - self.contentPeekSize;
+                         if(self.contentPeekSize != -self.menuViewWidthConstraint.constant) {
+                             self.menuViewWidthConstraint.constant = -self.contentPeekSize;
+                         }
+                         if([self.menuViewController conformsToProtocol:@protocol(CharMenuViewControllerDelegate)]) {
+                             if([self.menuViewController respondsToSelector:@selector(willOpenMenu)]) {
+                                 [((id<CharMenuViewControllerDelegate>)self.menuViewController) willOpenMenu];
+                             }
+                         }
                          [self.view layoutIfNeeded];
                      } completion:^(BOOL finished) {
-                         
                          self.state = CharMenuStateOpened;
+                         if([self.menuViewController conformsToProtocol:@protocol(CharMenuViewControllerDelegate)]) {
+                             if([self.menuViewController respondsToSelector:@selector(didOpenMenu)]) {
+                                 [((id<CharMenuViewControllerDelegate>)self.menuViewController) didOpenMenu];
+                             }
+                         }
                          self.animating = NO;
                      }];
 }
@@ -268,11 +290,22 @@ CGFloat const CHAR_MENU_SNAP_RATIO = .3333333f;
                         options:UIViewAnimationOptionBeginFromCurrentState
                      animations:^{
                          self.contentViewLeadingConstraint.constant = 0.f;
+                         if([self.menuViewController conformsToProtocol:@protocol(CharMenuViewControllerDelegate)]) {
+                             if([self.menuViewController respondsToSelector:@selector(willCloseMenu)]) {
+                                 [((id<CharMenuViewControllerDelegate>)self.menuViewController) willOpenMenu];
+                             }
+                         }
                          [self.view layoutIfNeeded];
                      } completion:^(BOOL finished) {
                          
                          self.state = CharMenuStateClosed;
                          self.contentViewController.view.userInteractionEnabled = YES;
+                         
+                         if([self.menuViewController conformsToProtocol:@protocol(CharMenuViewControllerDelegate)]) {
+                             if([self.menuViewController respondsToSelector:@selector(didCloseMenu)]) {
+                                 [((id<CharMenuViewControllerDelegate>)self.menuViewController) didCloseMenu];
+                             }
+                         }
                          self.animating = NO;
                      }];
 }

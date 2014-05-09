@@ -22,7 +22,7 @@
     [super viewWillAppear:animated];
     
     CharMenuViewController *menuVC = [[CharMenuViewController alloc] init];
-    menuVC.menuViewController = self.menuViewController;
+//    menuVC.menuViewController = self.menuViewController;
     menuVC.contentViewController = self.contentViewController;
     [self.view addSubview:menuVC.view];
     [self addChildViewController:menuVC];

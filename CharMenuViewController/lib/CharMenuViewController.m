@@ -176,7 +176,9 @@ CGFloat const CHAR_MENU_SNAP_RATIO = .3333333f;
 
 -(void) viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-    self.shadow.frame = CGRectMake(0, 0, self.shadowView.bounds.size.width, self.shadowView.bounds.size.height);
+    if(self.contentViewController) {
+        self.shadow.frame = CGRectMake(0, 0, self.shadowView.bounds.size.width, self.shadowView.bounds.size.height);
+    }
 }
 
 -(UIView *) shadowView {
